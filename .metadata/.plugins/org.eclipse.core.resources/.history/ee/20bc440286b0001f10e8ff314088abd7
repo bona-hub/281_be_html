@@ -1,0 +1,10 @@
+package com.cmpe281.finalproject.smart_robot_backend.repositories;
+
+import com.cmpe281.finalproject.smart_robot_backend.entities.Alert;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
+
+@Repository
+public interface AlertRepository extends JpaRepository<Alert, Long> {
+    // Add any custom query methods here if needed
+}

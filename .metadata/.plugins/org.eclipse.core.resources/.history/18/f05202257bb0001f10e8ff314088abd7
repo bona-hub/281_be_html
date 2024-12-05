@@ -1,0 +1,110 @@
+package com.cmpe281.finalproject.smart_robot_backend.services;
+
+import org.springframework.stereotype.Service;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+
+import com.cmpe281.finalproject.smart_robot_backend.dto.PatrolScheduleDto;
+import com.cmpe281.finalproject.smart_robot_backend.dto.RobotDto;
+import com.cmpe281.finalproject.smart_robot_backend.exceptions.RobotNotFoundException;
+
+import java.util.ArrayList;
+import java.util.List;
+
+@Service
+public class RobotService {
+	
+    private List<RobotDto> robots = new ArrayList<>(); // In-memory store for simplicity
+
+    public RobotDto createRobot(RobotDto robotDto) {
+    	// TODO Change to add to repository - @lavya
+        // 1. Generate a unique ID for the robot (replace with your ID generation logic)
+        Long robotId = generateUniqueId(); 
+        robotDto.setId(robotId);
+        
+        // 2. (Optional) Perform additional business logic, like saving to a database
+        
+        // 3. Add the robot to the list (or your data store)
+        robots.add(robotDto);
+
+        return robotDto;
+    }
+
+    private List<RobotDto> getAllRobotsFromDataStore() {
+		// TODO Auto-generated method stub - @tanupa
+		return null;
+	}
+
+	// ... other methods (getAllowedSimulatorTypes, getAllowedRobotTypes, etc.) ...
+
+    private Long generateUniqueId() {
+        // Replace with your actual ID generation logic (e.g., using a database sequence)
+        return (long) (Math.random() * 1000000); 
+    }
+
+    public List<String> getAllowedSimulatorTypes() {
+        // Replace with your actual allowed simulator types
+        return List.of("Carla", "Gazebo", "Webots", "MATLAB/Simulink", "ROS (Robot Operating System)", "Unity", "Custom");
+    }
+
+    public List<String> getAllowedRobotTypes() {
+        // Replace with your actual allowed robot types
+        return List.of("Surveillance", "Reconnaissance", "Patrol");
+    }
+
+    public List<String> getAllowedOperationalStatuses() {
+        // Replace with your actual allowed operational statuses
+        return List.of("Active", "Idle", "Under Maintenance");
+    }
+    
+    public RobotDto updateRobot(Long robotId, RobotDto updatedRobotDto) {
+        // 1. Find the robot with the given ID
+        RobotDto existingRobot = robots.stream()
+                .filter(robot -> robot.getId().equals(robotId))
+                .findFirst()
+                .orElseThrow(() -> new RobotNotFoundException("Robot not found with ID: " + robotId));
+
+        // 2. Update the robot's properties
+        existingRobot.setName(updatedRobotDto.getName());
+        existingRobot.setType(updatedRobotDto.getType());
+        existingRobot.setOperationalStatus(updatedRobotDto.getOperationalStatus());
+        existingRobot.setBatteryLevel(updatedRobotDto.getBatteryLevel());
+
+        // 3. (Optional) If using a database, save the updated robot
+
+        return existingRobot;
+    }
+
+    public List<RobotDto> getRobotList(int page) {
+    	// TODO Change to read from repository - @lavya
+        // 1. Create a Pageable object (not really needed for in-memory, but kept for consistency)
+        // Pageable pageable = PageRequest.of(page, 10); // Fetch 10 robots per page
+
+        // 2. Implement pagination logic for the in-memory list
+        int startIndex = page * 10;
+        int endIndex = Math.min(startIndex + 10, robots.size()); // Use robots.size()
+        List<RobotDto> paginatedRobots = robots.subList(startIndex, endIndex);
+
+        return paginatedRobots; 
+    }
+    
+    public void schedulePatrol(Long robotId, String robotName, String requestedBy, PatrolScheduleDto scheduleDto) { // Add requestedBy parameter
+        // 1. Find the robot with the given ID and name
+        RobotDto existingRobot = robots.stream()
+                .filter(robot -> robot.getId().equals(robotId) && robot.getName().equals(robotName))
+                .findFirst()
+                .orElseThrow(() -> new RobotNotFoundException(
+                        "Robot not found with ID: " + robotId + " and name: " + robotName));
+
+        // 2. Set the patrol schedule variables in the existing robot
+        existingRobot.setStartTime(scheduleDto.getStartTime());
+        existingRobot.setEndTime(scheduleDto.getEndTime());
+        existingRobot.setStartDestination(scheduleDto.getStartDestination());
+        existingRobot.setEndDestination(scheduleDto.getEndDestination());
+        existingRobot.setRequestedBy(requestedBy); // Set requestedBy
+
+        // 3. (Optional) If using a database, save the updated robot
+        // robotRepository.save(existingRobot); // Example using a repository
+    }
+}

@@ -1,0 +1,20 @@
+package com.cmpe281.finalproject.smart_robot_backend.repositories;
+
+
+import com.cmpe281.finalproject.smart_robot_backend.entities.User;
+
+import java.util.List;
+
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
+
+@Repository
+public interface UserRepository extends JpaRepository<User, Long> {
+
+    // Add any custom query methods here if needed
+    User findByUsername(String username);
+
+	User findByLogin(String login);
+
+	List<User> search(String string); 
+}

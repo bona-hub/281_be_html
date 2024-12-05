@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Robot Metrics Dashboard</title>
+    <link rel="stylesheet" href="dashboard.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="dashboard.js" defer></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <!-- Sidebar -->
+    <div class="sidebar">
+      <div class="project-name">
+            Smart Security Patrol Robot
+            <button id="menuToggle" class="menu-toggle"></button>
+        </div>
+        <ul>
+            <li><a href="dashboard.html"><i class="fas fa-home"></i><span>Home</span></a></li>
+            <li><a href="user_management.html"><i class="fas fa-user"></i><span>Users</span></a></li>
+            <li><a href="robotmanagement.html"><i class="fas fa-robot"></i><span>Robot Management</span></a></li>
+            <li><a href="PatrolScheduling.html"><i class="fas fa-calendar-alt"></i><span>Patrol Scheduling</span></a></li>
+            <li><a href="SecuritySettings.html"><i class="fas fa-lock"></i><span>Security Settings</span></a></li>
+            <li><a href="SystemPreferences.html"><i class="fas fa-cogs"></i><span>System Preferences</span></a></li>
+            <li><a href="UserSimulatorOverview.html"><i class="fas fa-desktop"></i><span>User Simulator Overview</span></a></li>
+            <li><a href="robotregistration.html"><i class="fas fa-robot"></i><span>Robot Registration</span></a></li>
+             <li><a href="AlertsAndNotifications.html"><i class="fas fa-bell"></i><span>Alerts</span></a></li>
+          
+            <li><a id="signOutBtn" href="#"><i class="fas fa-sign-out-alt"></i><span>Sign Out</span></a></li>
+        </ul>
+    </div>
+
+    <!-- Main Content -->
+<div class="top-bar">
+    <div class="top-bar-right">
+        <div class="search-bar">
+            <input type="text" placeholder="Search in Sidebar..." />
+            <button><i class="fas fa-search"></i></button>
+        </div>
+        <div class="notifications">
+            <a href="AlertsAndNotifications.html" title="Notifications">
+                <i class="fas fa-bell"></i>
+            </a>
+        </div>
+        <div class="profile">
+            <a href="Profile.html" title="Profile">
+                <img id="profileIcon" src="profile-placeholder.png" alt="Profile Icon" />
+            </a>
+        </div>
+    </div>
+</div>
+    
+    <div class="main-content">
+        <div class="dashboard-container">
+            <!-- Metrics Section - Row 1 -->
+            <section class="metrics">
+                <div class="metric-card blue">
+                    <h3>Total Active Robots</h3>
+                    <p class="metric-value">15</p>
+                </div>
+                <div class="metric-card green">
+                    <h3>Patrol Efficiency</h3>
+                    <p class="metric-value">92%</p>
+                </div>
+                <div class="metric-card orange">
+                    <h3>Average Battery Level</h3>
+                    <p class="metric-value">78%</p>
+                </div>
+            </section>
+
+            <!-- Graphs Section -->
+            <div class="graphs-container">
+                <!-- Statistical Reports Chart -->
+                <div class="chart-container">
+                    <h2>Statistical Reports</h2>
+                    <div class="chart-controls-tab">
+                        <button id="statsLastMonth" class="chart-tab active">Last</button>
+                        <button id="statsCurrentMonth" class="chart-tab">Current</button>
+                    </div>
+                    <canvas id="statsBarChart"></canvas>
+                </div>
+
+                <!-- Operational Metrics Chart -->
+                <div class="chart-container">
+                    <h2>Operational Metrics</h2>
+                    <div class="chart-controls-tab">
+                        <button id="operationLastMonth" class="chart-tab active">Last</button>
+                        <button id="operationCurrentMonth" class="chart-tab">Current</button>
+                    </div>
+                    <canvas id="operationMetricsChart"></canvas>
+                </div>
+            </div>
+
+            <!-- Metrics Section - Row 2 -->
+            <section class="metrics">
+                <div class="metric-card red">
+                    <h3>Unresolved Alerts</h3>
+                    <p class="metric-value">7</p>
+                </div>
+                <div class="metric-card purple">
+                    <h3>Maintenance Status</h3>
+                    <p class="metric-value">3</p>
+                </div>
+                <div class="metric-card teal">
+                    <h3>Coverage Metrics</h3>
+                    <p class="metric-value">85%</p>
+                </div>
+            </section>
+
+            <!-- Robot Status Table -->
+            <div class="robot-status-section">
+                <h2>Robot Status</h2>
+                <div class="table-controls">
+                    <button id="lastWeek" class="control-tab active">Last Week</button>
+                    <button id="allMonth" class="control-tab">All Month</button>
+                </div>
+                <table class="robot-status-table">
+                    <thead>
+                        <tr>
+                            <th>Robot ID</th>
+                            <th>Robot Name</th>
+                            <th>Robot Status</th>
+                            <th>Battery Level</th>
+                            <th>Patrol Efficiency</th>
+                            <th>Active Alerts</th>
+                            <th>Maintenance Flagged</th>
+                        </tr>
+                    </thead>
+                    <tbody id="robotStatusBody">
+                        <!-- Dynamic Rows Will Be Populated Here -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

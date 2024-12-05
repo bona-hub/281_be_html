@@ -1,0 +1,96 @@
+package com.cmpe281.finalproject.smart_robot_backend.controllers;
+import java.util.List;
+
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.cmpe281.finalproject.smart_robot_backend.dto.RobotDto;
+
+@RestController
+@RequestMapping("/v1/robots") 
+public class RobotController {
+
+    private final RobotService robotService;
+
+    public RobotController(RobotService robotService) {
+        this.robotService = robotService; 
+
+    }
+
+    @PostMapping // new robot 
+    public ResponseEntity<RobotDto> createRobot(
+    		@RequestParam Long userId, 
+            @RequestParam(value = "simulatorType") String simulatorType,
+            @RequestParam(value = "simulatorName") String simulatorName,
+            @RequestBody @Valid RobotCreationRequest robotCreationRequest) { 
+    	
+    	// 1. Validate simulator type against allowed values
+        List<String> allowedSimulatorTypes = robotService.getAllowedSimulatorTypes();
+        if (!allowedSimulatorTypes.contains(simulatorType)) {
+            return ResponseEntity.badRequest().body(null); // Or a more specific error response
+        }
+        
+        // 2. Validate robot type against allowed values
+        List<String> allowedRobotTypes = robotService.getAllowedRobotTypes();
+        if (!allowedRobotTypes.contains(robotCreationRequest.getType())) {
+            return ResponseEntity.badRequest().body(null); // Or a more specific error response
+        }
+
+        // 3. Validate operational status against allowed values
+        List<String> allowedOperationalStatuses = robotService.getAllowedOperationalStatuses();
+        if (!allowedOperationalStatuses.contains(robotCreationRequest.getOperationalStatus())) {
+            return ResponseEntity.badRequest().body(null); // Or a more specific error response
+        }
+
+        // 4. Create and populate RobotDto
+        RobotDto robotDto = new RobotDto();
+        robotDto.setUserId(userId);
+        robotDto.setSimulatorType(simulatorType);
+        robotDto.setSimulatorName(simulatorName);
+        robotDto.setName(robotCreationRequest.getName());
+        robotDto.setType(robotCreationRequest.getType());
+        robotDto.setOperationalStatus(robotCreationRequest.getOperationalStatus());
+        robotDto.setBatteryLevel(robotCreationRequest.getBatteryLevel()); 
+
+        // 3. Call the service to create the robot
+        RobotDto createdRobot = robotService.createRobot(robotDto);
+
+        return new ResponseEntity<>(createdRobot, HttpStatus.CREATED); 
+        
+    }
+
+    @PutMapping("/{robotId}") // edit robot
+    public ResponseEntity<RobotDto> updateRobot(@PathVariable Long robotId, @RequestBody RobotDto robotDto) {
+        return ResponseEntity.ok(robotService.updateRobot(robotId, robotDto)); 
+    }
+
+    @PostMapping("/{robotId}/register") // registration 
+    public ResponseEntity<Void> registerRobot(@PathVariable Long robotId) {
+        robotService.registerRobot(robotId);
+        return ResponseEntity.noContent().build();
+    }
+
+    @GetMapping // list[id,status]
+    public ResponseEntity<List<RobotStatusDto>> getRobotList() { 
+        return ResponseEntity.ok(robotService.getRobotList());
+    }
+
+    @PostMapping("/{robotId}/schedule") // patrol scheduling
+    public ResponseEntity<Void> schedulePatrol(@PathVariable Long robotId, @RequestBody PatrolScheduleDto scheduleDto) { 
+        robotService.schedulePatrol(robotId, scheduleDto); 
+        return ResponseEntity.noContent().build();
+    }
+
+    @PostMapping("/{robotId}/alert") // raise alert
+    public ResponseEntity<Void> raiseAlert(@PathVariable Long robotId, @RequestBody AlertDto alertDto) {  
+        robotService.raiseAlert(robotId, alertDto);
+        return ResponseEntity.noContent().build();
+    }
+}
+    

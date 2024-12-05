@@ -1,0 +1,89 @@
+package com.cmpe281.finalproject.smart_robot_backend.services;
+
+import org.springframework.stereotype.Service;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+
+import com.cmpe281.finalproject.smart_robot_backend.dto.AlertDto;
+import com.cmpe281.finalproject.smart_robot_backend.dto.PatrolScheduleDto;
+import com.cmpe281.finalproject.smart_robot_backend.exceptions.RobotNotFoundException;
+import com.cmpe281.finalproject.smart_robot_backend.entities.Robot; // Import Robot entity
+import com.cmpe281.finalproject.smart_robot_backend.repositories.RobotRepository; // Import RobotRepository
+
+import java.util.List;
+
+@Service
+public class RobotService {
+	
+    @Autowired
+    private RobotRepository robotRepository; // Inject RobotRepository
+
+    public Robot createRobot(Robot robot) { // Changed parameter to Robot entity
+        return robotRepository.save(robot); 
+    }
+
+    // ... other methods (getAllowedSimulatorTypes, getAllowedRobotTypes, etc.) ...
+
+    public List<String> getAllowedSimulatorTypes() {
+        return List.of("Carla", "Gazebo", "Webots", "MATLAB/Simulink", "ROS (Robot Operating System)", "Unity", "Custom");
+    }
+
+    public List<String> getAllowedRobotTypes() {
+        return List.of("Surveillance", "Reconnaissance", "Patrol");
+    }
+
+    public List<String> getAllowedOperationalStatuses() {
+        return List.of("Active", "Idle", "Under Maintenance");
+    }
+    
+    public Robot updateRobot(Long robotId, Robot updatedRobot) { // Changed parameter to Robot entity
+        Robot existingRobot = robotRepository.findById(robotId)
+                .orElseThrow(() -> new RobotNotFoundException("Robot not found with ID: " + robotId));
+
+        existingRobot.setName(updatedRobot.getName());
+        existingRobot.setType(updatedRobot.getType());
+        existingRobot.setOperationalStatus(updatedRobot.getOperationalStatus());
+        existingRobot.setBatteryLevel(updatedRobot.getBatteryLevel());
+
+        return robotRepository.save(existingRobot); 
+    }
+
+    public List<Robot> getRobotList(int page) { // Changed return type to List<Robot>
+        Pageable pageable = PageRequest.of(page, 10); // Fetch 10 robots per page
+        Page<Robot> robotPage = robotRepository.findAll(pageable); 
+        return robotPage.getContent();
+    }
+    
+    public void schedulePatrol(Long robotId, String robotName, String requestedBy, PatrolScheduleDto scheduleDto) { 
+        Robot existingRobot = robotRepository.findById(robotId)
+                .orElseThrow(() -> new RobotNotFoundException(
+                        "Robot not found with ID: " + robotId + " and name: " + robotName));
+
+        existingRobot.setStartTime(scheduleDto.getStartTime());
+        existingRobot.setEndTime(scheduleDto.getEndTime());
+        existingRobot.setStartDestination(scheduleDto.getStartDestination());
+        existingRobot.setEndDestination(scheduleDto.getEndDestination());
+        existingRobot.setRequestedBy(requestedBy); 
+
+        robotRepository.save(existingRobot); 
+    }
+    
+    public void deleteRobot(Long robotId) {
+        // 1. Check if the robot exists
+        if (!robotRepository.existsById(robotId)) {
+            throw new RobotNotFoundException("Robot not found with ID: " + robotId);
+        }
+
+        // 2. Delete the robot
+        robotRepository.deleteById(robotId);
+    }
+    
+    @Autowired
+    private AlertService alertService; 
+
+    public void raiseAlert(Long robotId, AlertDto alertDto) {
+        alertService.createAlert(robotId, alertDto); 
+    }
+}

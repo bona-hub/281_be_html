@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www/thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Security Preferences</title>
+  <link rel="stylesheet" href="/SecuritySettings.css">
+</head>
+<body>
+  <div class="preferences-container">
+    <h2>Security Preferences</h2>
+
+    <!-- Two-Factor Authentication -->
+    <div class="input-group toggle-group">
+      <div class="toggle-item">
+        <label class="toggle-label">
+          <i class="fas fa-shield-alt"></i> Two-Factor Authentication
+        </label>
+        <div class="toggle-container">
+          <label class="switch">
+            <input type="checkbox" id="twoFactorToggle">
+            <span class="slider"></span>
+          </label>
+        </div>
+      </div>
+      <div id="twoFactorOptions" class="hidden">
+        <label for="twoFactorMethod">Preferred Method:</label>
+        <select id="twoFactorMethod" name="twoFactorMethod">
+          <option value="sms">SMS</option>
+          <option value="email">Email</option>
+          <option value="app">Authenticator App</option>
+        </select>
+      </div>
+    </div>
+
+    <!-- Data Encryption -->
+    <div class="input-group toggle-group">
+      <div class="toggle-item">
+        <label class="toggle-label">
+          <i class="fas fa-lock"></i> Data Encryption
+        </label>
+        <div class="toggle-container">
+          <label class="switch">
+            <input type="checkbox" id="encryptionToggle">
+            <span class="slider"></span>
+          </label>
+        </div>
+      </div>
+    </div>
+
+    <!-- Account Lockout -->
+    <div class="input-group">
+      <label for="lockoutThreshold">Account Lockout Threshold:</label>
+      <input type="number" id="lockoutThreshold" name="lockoutThreshold" placeholder="Failed attempts before lockout">
+    </div>
+    <div class="input-group">
+      <label for="lockoutDuration">Lockout Duration (minutes):</label>
+      <input type="number" id="lockoutDuration" name="lockoutDuration" placeholder="Duration of lockout">
+    </div>
+
+    <!-- Security Alert Configuration -->
+    <div class="input-group">
+      <label for="alertSeverity">Alert Severity Level:</label>
+      <select id="alertSeverity" name="alertSeverity">
+        <option value="low">Low</option>
+        <option value="medium">Medium</option>
+        <option value="high">High</option>
+        <option value="critical">Critical</option>
+      </select>
+    </div>
+
+    <h2>Role Assignment & Access Control</h2>
+
+    <!-- Admin ID -->
+   <div class="input-group">
+  <label for="adminId">Admin ID:</label>
+  <input type="text" id="adminId" name="adminId" placeholder="Enter Admin ID">
+</div>
+
+<div class="input-group">
+  <label for="userId">User ID:</label>
+  <input type="text" id="userId" name="userId" placeholder="Enter User ID">
+</div>
+
+    <!-- Assign User Role -->
+    <div class="input-group">
+      <label for="userRole">Assign User Role:</label>
+      <select id="userRole" name="userRole" disabled>
+        <option value="admin">Admin</option>
+        <option value="editor">Editor</option>
+        <option value="viewer">Viewer</option>
+      </select>
+    </div>
+
+    <!-- Access Level -->
+    <div class="input-group">
+      <label for="accessLevel">Access Level:</label>
+      <select id="accessLevel" name="accessLevel" disabled>
+        <option value="full">Full Access</option>
+        <option value="read-only">Read-Only</option>
+        <option value="custom">Custom Permissions</option>
+      </select>
+    </div>
+
+    <!-- Form Buttons -->
+    <div class="form-actions">
+      <button id="savePreferences" class="btn save-btn">Save Preferences</button>
+      <button id="cancelPreferences" class="btn cancel-btn">Cancel</button>
+    </div>
+  </div>
+
+  <script src="/SecuritySettings.js"></script>
+</body>
+</html>

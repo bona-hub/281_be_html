@@ -1,0 +1,167 @@
+/* General Styling */
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f9f9f9;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.preferences-container {
+  background: #fff;
+  padding: 30px;
+  border-radius: 10px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 500px;
+  text-align: center;
+}
+
+.preferences-container h2 {
+  margin-bottom: 20px;
+  font-size: 24px;
+  color: #333;
+}
+
+/* Input Group Styling */
+.input-group {
+  margin-bottom: 20px;
+  text-align: left;
+}
+
+.input-group label {
+  display: block;
+  font-size: 16px;
+  color: #333;
+  margin-bottom: 5px;
+}
+
+/* Toggle Buttons */
+.toggle-group {
+  display: flex;
+  flex-direction: column; /* Updated to stack toggles vertically */
+  gap: 15px; /* Add spacing between toggles */
+}
+
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 40px;
+  height: 20px;
+}
+
+.switch input {
+  display: none;
+}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  transition: 0.4s;
+  border-radius: 20px;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 14px;
+  width: 14px;
+  left: 3px;
+  bottom: 3px;
+  background-color: white;
+  transition: 0.4s;
+  border-radius: 50%;
+}
+
+input:checked + .slider {
+  background-color: #8a2be2;
+}
+
+input:checked + .slider:before {
+  transform: translateX(20px);
+}
+
+.notification-options {
+  padding-left: 20px;
+}
+
+.toggle-option {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+/* Dropdowns */
+select {
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  font-size: 16px;
+  color: #333;
+  background-color: #fff;
+}
+
+/* Buttons */
+.form-actions {
+  display: flex;
+  justify-content: space-between;
+}
+
+.btn {
+  width: 48%;
+  padding: 10px;
+  font-size: 16px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: bold;
+  border: none;
+}
+
+.save-btn {
+  background-color: #8a2be2;
+  color: white;
+}
+
+.cancel-btn {
+  background-color: #ddd;
+  color: #333;
+}
+
+.btn:hover {
+  opacity: 0.9;
+}
+
+/* Hidden Options */
+.hidden {
+  display: none;
+}
+
+/* Align Light Mode and Disable Notifications */
+.toggle-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.toggle-container span {
+  margin-left: 10px;
+  font-size: 14px;
+  color: #333;
+}
+
+/* Added for spacing and alignment of toggle groups */
+.toggle-group .toggle-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}

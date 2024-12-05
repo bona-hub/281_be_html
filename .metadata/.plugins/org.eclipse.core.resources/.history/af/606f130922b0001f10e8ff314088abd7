@@ -1,0 +1,13 @@
+package com.cloud281_project;
+
+public class Repositoryclass {
+	package com.yourapp.Repositoryclass;
+
+	import com.yourapp.model.User;
+	import org.springframework.data.jpa.repository.JpaRepository;
+
+	public interface UserRepository extends JpaRepository<User, Long> {
+	    // Custom query methods (if needed) can be added here
+	}
+}
+

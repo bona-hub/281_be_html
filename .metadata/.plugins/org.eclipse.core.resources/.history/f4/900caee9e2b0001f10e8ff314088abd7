@@ -1,0 +1,26 @@
+package com.cmpe281.finalproject.smart_robot_backend.dto;
+
+import java.util.List;
+
+public class ProfileDto {
+
+    private UserSummaryDto userDto;
+    private List<UserSummaryDto> friends;
+
+
+    public ProfileDto() {
+        super();
+    }
+
+    public ProfileDto(UserSummaryDto userDto) {
+        this.userDto = userDto;
+    }
+
+    public UserSummaryDto getUserDto() {
+        return userDto;
+    }
+
+    public void setUserDto(UserSummaryDto userDto) {
+        this.userDto = userDto;
+    }
+}

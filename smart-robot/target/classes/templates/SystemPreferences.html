@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www/thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>System Preferences</title>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="/SystemPreferences.css">
+</head>
+<body>
+  <div class="preferences-container">
+    <h2>System Preferences</h2>
+    <form id="preferencesForm">
+      <!-- Theme Toggle -->
+      <div class="input-group toggle-group">
+        <label>
+          <i class="fas fa-paint-brush"></i> Theme
+        </label>
+        <div class="toggle-buttons">
+          <label class="switch">
+            <input type="checkbox" id="themeToggle">
+            <span class="slider"></span>
+          </label>
+          <span id="themeLabel">Light Mode</span>
+        </div>
+      </div>
+
+      <!-- Notifications Toggle -->
+      <div class="input-group toggle-group">
+        <label>
+          <i class="fas fa-bell"></i> Notifications
+        </label>
+        <div class="toggle-buttons">
+          <label class="switch">
+            <input type="checkbox" id="notificationsToggle">
+            <span class="slider"></span>
+          </label>
+          <span id="notificationsLabel">Disable Notifications</span>
+        </div>
+      </div>
+
+      <!-- Notification Options -->
+      <div class="notification-options hidden" id="notificationOptions">
+        <div class="toggle-option">
+          <label>Email Notifications</label>
+          <label class="switch">
+            <input type="checkbox" id="emailToggle">
+            <span class="slider"></span>
+          </label>
+        </div>
+        <div class="toggle-option">
+          <label>Push Alerts</label>
+          <label class="switch">
+            <input type="checkbox" id="pushToggle">
+            <span class="slider"></span>
+          </label>
+        </div>
+        <div class="toggle-option">
+          <label>SMS Updates</label>
+          <label class="switch">
+            <input type="checkbox" id="smsToggle">
+            <span class="slider"></span>
+          </label>
+        </div>
+        <div class="toggle-option">
+          <label>Critical System Changes</label>
+          <label class="switch">
+            <input type="checkbox" id="criticalToggle">
+            <span class="slider"></span>
+          </label>
+        </div>
+      </div>
+
+      <!-- Language Preferences -->
+      <div class="input-group">
+        <label for="language">
+          <i class="fas fa-language"></i> Preferred Language
+        </label>
+        <select id="language" name="language">
+          <option value="English">English</option>
+          <option value="Spanish">Spanish</option>
+          <option value="French">French</option>
+          <option value="German">German</option>
+          <option value="Chinese">Chinese</option>
+          <option value="Japanese">Japanese</option>
+          <option value="Hindi">Hindi</option>
+          <option value="Arabic">Arabic</option>
+          <option value="Russian">Russian</option>
+          <option value="Portuguese">Portuguese</option>
+        </select>
+      </div>
+
+      <!-- Time Zone Preferences -->
+      <div class="input-group">
+        <label for="timezone">
+          <i class="fas fa-clock"></i> Time Zone
+        </label>
+        <select id="timezone" name="timezone">
+          <option value="UTC">UTC</option>
+          <option value="PST">Pacific Standard Time (PST)</option>
+          <option value="EST">Eastern Standard Time (EST)</option>
+          <option value="CET">Central European Time (CET)</option>
+          <option value="IST">India Standard Time (IST)</option>
+          <option value="JST">Japan Standard Time (JST)</option>
+          <option value="AEST">Australian Eastern Standard Time (AEST)</option>
+          <option value="HKT">Hong Kong Time (HKT)</option>
+        </select>
+      </div>
+
+      <!-- Buttons -->
+      <div class="form-actions">
+        <button type="submit" class="btn save-btn">Update</button>
+        <button type="button" class="btn cancel-btn">Cancel</button>
+      </div>
+    </form>
+  </div>
+
+  <script src="/SystemPreferences.js"></script>
+</body>
+</html>

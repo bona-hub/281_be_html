@@ -1,0 +1,35 @@
+package com.cmpe281.finalproject.smart_robot_backend.services;
+
+import java.nio.CharBuffer;
+
+
+import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.stereotype.Service;
+
+import com.cmpe281.finalproject.smart_robot_backend.dto.CredentialsDto;
+import com.cmpe281.finalproject.smart_robot_backend.dto.UserDto;
+
+@Service
+public class AuthenticationService {
+
+    private final PasswordEncoder passwordEncoder;
+
+    public AuthenticationService(PasswordEncoder passwordEncoder) {
+        this.passwordEncoder = passwordEncoder;
+    }
+
+    public UserDto authenticate(CredentialsDto credentialsDto) {
+        String encodedMasterPassword = passwordEncoder.encode(CharBuffer.wrap("the-password"));
+        if (passwordEncoder.matches(CharBuffer.wrap(credentialsDto.getPassword()), encodedMasterPassword)) {
+            return new UserDto(1L, "Sergio", "Lema", "login", "token");
+        }
+        throw new RuntimeException("Invalid password");
+    }
+
+    public UserDto findByLogin(String login) {
+        if ("login".equals(login)) {
+            return new UserDto(1L, "Sergio", "Lema", "login", "token");
+        }
+        throw new RuntimeException("Invalid login");
+    }
+}

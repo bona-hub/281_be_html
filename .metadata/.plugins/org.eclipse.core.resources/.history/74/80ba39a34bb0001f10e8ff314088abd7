@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smart Security Patrol Robot Cloud Platform</title>
+    <!-- Link to CSS file -->
+    <link rel="stylesheet" href="/welcome.css">
+    <!-- Font Awesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head> 
+<body>
+    <header class="fade-in">
+        <nav>
+            <ul>
+                <li><a href="#">Home</a></li>
+                <li><a href="#features">Features</a></li>
+                <li><a href="#about">About Us</a></li>
+                <li><a href="#contact">Contact</a></li>
+               <li class="auth-buttons">
+    <a href="login.html" class="login-btn">Login</a>
+    <a href="signup.html" class="signup-btn">Sign Up</a>
+</li>
+
+            </ul>
+        </nav>
+    </header>
+
+    <section class="welcome-section fade-in">
+        <h1>Welcome to the Smart Security Patrol Robot Cloud Platform</h1>
+       
+        <a href="#features" class="cta-btn">Get Started</a>
+    </section>
+
+    <section id="features" class="features-section fade-in">
+        <h2>Key Features</h2>
+        <div class="features-container">
+            <div class="feature">
+                <i class="fas fa-map-marker-alt feature-icon"></i>
+                <h3>Real-Time Tracking and Monitoring</h3>
+                <p>Monitor your patrol robots in real-time, ensuring security and efficiency.</p>
+            </div>
+            <div class="feature">
+                <i class="fas fa-bell feature-icon"></i>
+                <h3>Security Alert Management</h3>
+                <p>Receive immediate alerts and take quick actions for security incidents.</p>
+            </div>
+            <div class="feature">
+                <i class="fas fa-route feature-icon"></i>
+                <h3>Patrol Scheduling Interface</h3>
+                <p>Plan and adjust patrol schedules to cover critical areas effectively.</p>
+            </div>
+            <div class="feature">
+                <i class="fas fa-robot feature-icon"></i>
+                <h3>Robot Management</h3>
+                <p>Oversee the entire fleet's health, battery, and operational status.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="cta-section fade-in">
+        <p>Ready to manage your security patrol robots with ease? <a href="signup.html" class="signup-btn">Sign Up Now</a></p>
+    </section>
+
+    <footer class="fade-in">
+        <p>&copy; 2024 Smart Security Patrol Robot Cloud Platform</p>
+        <a href="#">Privacy Policy</a> | <a href="#">Terms of Service</a> | <a href="#contact">Contact</a>
+    </footer>
+
+    <!-- Include JavaScript file -->
+    <script src="welcome.js"></script>
+</body>
+</html>

@@ -1,0 +1,175 @@
+/* General Styling */
+body {
+  font-family: Arial, sans-serif;
+  background-color: #8a2be2;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  overflow: hidden; /* Prevent body overflow */
+}
+
+.profile-container {
+  background: #fff;
+  padding: 30px;
+  border-radius: 10px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  width: 90%; /* Adjusted width to fit inside viewport */
+  max-width: 450px; /* Ensure it doesn't exceed this width */
+  box-sizing: border-box; /* Include padding in width calculation */
+  overflow: hidden; /* Prevent elements from spilling outside */
+  text-align: center;
+}
+
+.profile-container h2 {
+  margin-bottom: 20px;
+  font-size: 24px;
+  color: #4a4a4a;
+}
+
+/* Profile Photo Section */
+.profile-photo-section {
+  margin-bottom: 20px;
+}
+
+.photo-wrapper img {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  border: 2px solid #ddd;
+  object-fit: cover;
+}
+
+.edit-photo-btn {
+  margin-top: 10px;
+  background: none;
+  border: none;
+  color: #8a2be2;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+#photoOptions {
+  margin-top: 10px;
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+}
+
+#photoOptions.hidden {
+  display: none;
+}
+
+#photoOptions button {
+  background: none;
+  border: 1px solid #ddd;
+  padding: 5px 10px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 14px;
+  color: #333;
+}
+
+/* Input Group Styling */
+.input-group {
+  position: relative;
+  margin-bottom: 20px;
+}
+
+.input-group i {
+  position: absolute;
+  top: 50%;
+  left: 15px;
+  transform: translateY(-50%);
+  color: #8a2be2;
+  font-size: 16px;
+}
+
+.input-group input,
+.input-group select,
+.input-group textarea {
+  width: 100%;
+  padding: 15px 15px 15px 50px; /* Increased padding for better alignment */
+  border: 1px solid #ddd;
+  border-radius: 10px; /* Added rounded corners */
+  font-size: 16px; /* Consistent font size for better readability */
+  color: #333;
+  box-sizing: border-box; /* Prevent overflow by including padding in width */
+}
+
+/* Mobile Number Container */
+.input-group.mobile-number-container {
+  display: flex;
+  align-items: center;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  padding: 5px; /* Container padding */
+  padding-left: 50px; /* Space for the icon */
+  box-sizing: border-box;
+  gap: 10px; /* Space between dropdown and input */
+}
+
+.input-group.mobile-number-container select.country-code {
+  border: none;
+  background: none;
+  font-size: 14px;
+  padding: 10px;
+  border-right: 1px solid #ddd; /* Divider between dropdown and input */
+  width: 70px; /* Fixed width for dropdown */
+  outline: none;
+}
+
+.input-group.mobile-number-container input[type="tel"] {
+  border: none;
+  padding: 10px;
+  flex: 1; /* Takes the remaining width */
+  font-size: 14px;
+  outline: none;
+}
+
+/* Placeholder Styling */
+.input-group input::placeholder,
+.input-group textarea::placeholder,
+.input-group select::placeholder {
+  color: #aaa; /* Placeholder color */
+  font-size: 16px; /* Consistent placeholder size */
+  line-height: 1.5; /* Aligned placeholder */
+}
+
+textarea {
+  resize: none;
+  height: 70px;
+}
+
+/* Buttons */
+.form-actions {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+}
+
+.btn {
+  width: 48%;
+  padding: 10px;
+  font-size: 16px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: bold;
+  border: none;
+}
+
+.save-btn {
+  background-color: #8a2be2;
+  color: white;
+}
+
+.cancel-btn {
+  background-color: #ddd;
+  color: #333;
+}
+
+.btn:hover {
+  opacity: 0.9;
+}

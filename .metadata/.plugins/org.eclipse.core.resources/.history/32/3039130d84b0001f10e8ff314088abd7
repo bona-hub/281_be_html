@@ -1,0 +1,38 @@
+package com.cmpe281.finalproject.smart_robot_backend.services;
+
+import com.cmpe281.finalproject.smart_robot_backend.dto.AlertDto;
+import com.cmpe281.finalproject.smart_robot_backend.entities.Alert;
+import org.springframework.stereotype.Service;
+
+import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.UUID;
+
+@Service
+public class AlertService {
+
+    private List<Alert> alerts = new ArrayList<>(); // In-memory list to store alerts
+
+    public Alert createAlert(Long robotId, AlertDto alertDto) {
+        // 1. Generate a unique alert ID (using UUID in this example)
+        String alertId = UUID.randomUUID().toString();
+
+        // 2. Create an Alert object
+        Alert alert = new Alert();
+        alert.setAlertId(alertId);
+        alert.setRobotId(robotId);
+        alert.setAlertName(alertDto.getAlertName());
+        alert.setSeverity(alertDto.getSeverity());
+        alert.setTimestamp(LocalDateTime.now()); // Set current timestamp
+        alert.setLocation(alertDto.getLocation());
+        alert.setStatus(alertDto.getStatus());
+
+        // 3. Add the alert to the in-memory list
+        alerts.add(alert);
+
+        return alert;
+    }
+
+    // Add other methods for managing alerts as needed (e.g., getAlertById, updateAlert, etc.)
+}

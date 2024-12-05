@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Reset Password</title>
+  <link rel="stylesheet" href="reset_password.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+  <div class="background">
+    <div class="reset-password-container">
+      <h2>Reset Password</h2>
+      <form id="resetPasswordForm">
+        <!-- Email -->
+        <div class="input-group">
+          <i class="fas fa-envelope icon"></i>
+          <input type="email" id="email" placeholder="Enter your registered email" required>
+        </div>
+        <!-- Passcode -->
+        <div class="input-group">
+          <i class="fas fa-key icon"></i>
+          <input type="text" id="passcode" placeholder="Enter your passcode" required>
+        </div>
+        <!-- New Password -->
+        <div class="input-group">
+          <i class="fas fa-lock icon"></i>
+          <input type="password" id="newPassword" placeholder="Enter new password" required>
+        </div>
+        <!-- Confirm New Password -->
+        <div class="input-group">
+          <i class="fas fa-check-circle icon"></i>
+          <input type="password" id="confirmPassword" placeholder="Confirm new password" required>
+        </div>
+        <button type="submit" class="reset-button">Reset Password</button>
+        <p id="errorMessage"></p>
+      </form>
+    </div>
+  </div>
+  <script src="reset_password.js"></script>
+</body>
+</html>

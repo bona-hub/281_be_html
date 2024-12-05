@@ -1,0 +1,21 @@
+package com.cmpe281.finalproject.smart_robot_backend.repositories;
+
+import com.cmpe281.finalproject.smart_robot_backend.entities.Alert;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
+import java.util.List;
+
+
+@Repository
+public interface AlertRepository extends JpaRepository<Alert, Long> {
+    // Add any custom query methods here if needed
+	@Override
+    public List<Alert> findByRobotId(Long robotId) {
+        // ... (Implementation to return dummy data) ...
+    }
+
+    @Override
+    public List<Alert> findBySeverity(String severity) {
+        // ... (Implementation to return dummy data) ...
+    }
+}

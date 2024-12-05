@@ -1,0 +1,139 @@
+/* General Styles */
+body {
+    margin: 0;
+    font-family: 'Arial', sans-serif;
+    background-color: #f4f4f9;
+    color: #333;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+/* Container */
+.container {
+    width: 90%;
+    max-width: 1200px;
+    margin: 20px auto;
+    text-align: center;
+    background: #fff;
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+/* Title */
+.title {
+    font-size: 2rem;
+    margin-bottom: 20px;
+    color: #333;
+}
+
+/* Simulator Table */
+.simulator-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+}
+
+.simulator-table thead {
+    background: #007bff;
+    color: #fff;
+}
+
+.simulator-table th,
+.simulator-table td {
+    padding: 12px 15px;
+    text-align: center;
+    border-bottom: 1px solid #ddd;
+}
+
+.simulator-table th {
+    font-size: 1rem;
+    font-weight: bold;
+    white-space: nowrap;
+}
+
+.simulator-table tbody tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+.simulator-table tbody tr:hover {
+    background-color: #f1f1f1;
+}
+
+.simulator-table td {
+    font-size: 0.95rem;
+    vertical-align: middle;
+}
+
+/* Status Indicator */
+.status {
+    display: inline-block;
+    padding: 5px 10px;
+    border-radius: 12px;
+    font-size: 0.85rem;
+    color: #fff;
+    text-align: center;
+    min-width: 80px;
+}
+
+.status.active {
+    background-color: #28a745;
+}
+
+.status.inactive {
+    background-color: #dc3545;
+}
+
+.status.maintenance {
+    background-color: #ffc107;
+    color: #333;
+}
+
+/* Action Button */
+.action-btn {
+    background-color: #007bff;
+    color: #fff;
+    padding: 8px 12px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 0.85rem;
+    text-decoration: none;
+    text-align: center;
+    display: inline-block;
+}
+
+.action-btn:hover {
+    background-color: #0056b3;
+}
+
+/* Pagination */
+.pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+}
+
+.pagination button {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    margin: 0 5px;
+    border-radius: 5px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.pagination button:hover {
+    background-color: #0056b3;
+}
+
+.pagination button:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+}

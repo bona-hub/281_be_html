@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Robot Management</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.3/dist/leaflet.css" />
+  <link rel="stylesheet" href="robotmanagement.css">
+</head>
+<body>
+  <div class="management-container">
+    <h1>Robot Management</h1>
+    <div class="controls">
+      <input type="text" id="searchRobot" placeholder="Search Robot">
+      <select id="statusFilter">
+        <option value="all">All</option>
+        <option value="active">Active</option>
+        <option value="inactive">Inactive</option>
+      </select>
+      <button id="addRobot" class="control-button"><i class="fas fa-plus"></i> Add Robot</button>
+      <button id="viewMap" class="control-button"><i class="fas fa-map-marker-alt"></i> View Map</button>
+    </div>
+    <table>
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Name</th>
+          <th>Operational Status</th>
+          <th>Current Route</th>
+          <th>Battery Life</th>
+          <th>Sensor Performance</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody id="robotTableBody">
+        <tr data-lat="37.3352" data-lng="-121.8811">
+          <td>#R001</td>
+          <td>Alpha Bot</td>
+          <td>Active</td>
+          <td>Route A</td>
+          <td>80%</td>
+          <td>Optimal</td>
+          <td>
+            <button class="edit-button"><i class="fas fa-edit"></i> Edit</button>
+            <button class="delete-button"><i class="fas fa-trash"></i> Remove</button>
+          </td>
+        </tr>
+        <tr data-lat="37.3372" data-lng="-121.8798">
+          <td>#R002</td>
+          <td>Beta Bot</td>
+          <td>Inactive</td>
+          <td>Route B</td>
+          <td>100%</td>
+          <td>Good</td>
+          <td>
+            <button class="edit-button"><i class="fas fa-edit"></i> Edit</button>
+            <button class="delete-button"><i class="fas fa-trash"></i> Remove</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <div id="mapContainer" class="hidden">
+      <div id="map" style="width: 100%; height: 400px;"></div>
+    </div>
+  </div>
+
+  <script src="https://unpkg.com/leaflet@1.9.3/dist/leaflet.js"></script>
+  <script src="robotmanagement.js"></script>
+</body>
+</html>

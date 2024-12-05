@@ -1,0 +1,53 @@
+package com.cmpe281.finalproject.smart_robot_backend.dto;
+
+public class AlertDto {
+    private String alertName;
+    private String severity;
+    private String location;
+    private String status;
+
+    // Constructors (default and all-args)
+
+    public AlertDto() {}
+
+    public AlertDto(String alertName, String severity, String location, String status) {
+        this.alertName = alertName;
+        this.severity = severity;
+        this.location = location;
+        this.status = status;
+    }
+
+    // Getters and Setters
+
+    public String getAlertName() {
+        return alertName;
+    }
+
+    public void setAlertName(String alertName) {
+        this.alertName = alertName;
+    }
+
+    public String getSeverity() {
+        return severity;
+    }
+
+    public void setSeverity(String severity) {
+        this.severity = severity;
+    }
+
+    public String getLocation() {
+        return location;
+    }
+
+    public void setLocation(String location) {
+        this.location = location;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+}

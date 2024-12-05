@@ -1,0 +1,9 @@
+package com.cloud281_project;
+
+public class Repositoryclass {
+	
+	public interface UserRepository extends JpaRepository<User, Long> {
+	    // Custom query methods (if needed) can be added here
+	}
+}
+

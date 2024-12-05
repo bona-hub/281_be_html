@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www/thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Robot Registration</title>
+  <link rel="stylesheet" href="/robotregistration.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+  <div class="registration-container">
+    <h2>Robot Registration Form</h2>
+    <form id="robot-registration-form">
+      <!-- User ID -->
+      <div class="input-group">
+        <i class="fas fa-user icon"></i>
+        <input type="text" id="user-id" placeholder="Enter User ID" name="user-id" required>
+      </div>
+
+      <!-- Simulator Type -->
+      <div class="input-group">
+        <i class="fas fa-cogs icon"></i>
+        <select id="simulator-type" name="simulator-type" required>
+          <option value="">Select Simulator Type</option>
+          <option value="Carla">Carla</option>
+          <option value="Gazebo">Gazebo</option>
+            <option value="Webots">Webots</option>
+          <option value="MATLAB/Simulink">MATLAB/Simulink</option>
+          <option value="ROS (Robot Operating System)">ROS (Robot Operating System)</option>
+          <option value="Unity">Unity</option>
+             <option value="Custom">Custom</option>
+        </select>
+      </div>
+
+      <!-- Simulator Name -->
+      <div class="input-group">
+        <i class="fas fa-terminal icon"></i>
+        <input type="text" id="simulator-name" placeholder="Enter Simulator Name" name="simulator-name" required>
+      </div>
+
+      <!-- Robot Name -->
+      <div class="input-group">
+        <i class="fas fa-robot icon"></i>
+        <input type="text" id="robot-name" placeholder="Enter Robot Name " name="robot-name">
+      </div>
+      
+      <!-- Robot Type -->
+      <div class="input-group">
+        <i class="fas fa-tools icon"></i>
+        <select id="robot-type" name="robot-type" required>
+          <option value="">Select Robot Type</option>
+          <option value="Surveillance">Surveillance</option>
+          <option value="Reconnaissance">Reconnaissance</option>
+          <option value="Patrol">Patrol</option>
+        </select>
+      </div>
+      
+      <!-- Operational Status -->
+      <div class="input-group">
+        <i class="fas fa-chart-line icon"></i>
+        <select id="operational-status" name="operational-status" required>
+          <option value="">Select Operational Status</option>
+          <option value="Active">Active</option>
+          <option value="Idle">Idle</option>
+          <option value="Under Maintenance">Under Maintenance</option>
+        </select>
+      </div>
+      
+      <!-- Battery Level -->
+      <div class="input-group">
+        <i class="fas fa-battery-three-quarters icon"></i>
+        <input type="number" id="battery-level" name="battery-level" min="0" max="100" placeholder="Battery Level (%)" required>
+      </div>
+      
+      <!-- Submit Button -->
+      <button type="submit" class="register-button">Register Robot</button>
+    </form>
+  </div>
+  <script src="/robotregistration.js"></script>
+</body>
+</html>

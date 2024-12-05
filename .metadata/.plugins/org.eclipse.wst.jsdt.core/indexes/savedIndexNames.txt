@@ -1,0 +1,1 @@
+INDEX VERSION 1.4+/Users/bonesgiri/eclipse-workspace/Smart_Security_Patrol_Robot_Cloud_Platform/.metadata/.plugins/org.eclipse.wst.jsdt.core/indexes

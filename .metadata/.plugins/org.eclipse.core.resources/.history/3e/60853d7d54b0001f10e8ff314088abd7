@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Profile Form</title>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="Profile.css">
+</head>
+<body>
+  <div class="profile-container">
+    <!-- Profile Photo Section -->
+    <div class="profile-photo-section">
+      <div class="photo-wrapper">
+        <img src="default-profile.png" alt="Profile Photo" id="profilePhoto">
+        <button id="editPhotoButton" class="edit-photo-btn">
+          <i class="fas fa-pencil-alt"></i> Edit Photo
+        </button>
+      </div>
+      <div id="photoOptions" class="hidden">
+        <button id="addPhotoButton">
+          <i class="fas fa-plus-circle"></i> Add Photo
+        </button>
+        <button id="deletePhotoButton">
+          <i class="fas fa-trash"></i> Delete Photo
+        </button>
+        <input type="file" id="photoInput" accept="image/*" style="display: none;">
+      </div>
+    </div>
+
+    <!-- Profile Form -->
+    <form id="profileForm">
+      <div class="input-group">
+        <i class="fas fa-user"></i>
+        <input type="text" name="preferredName" placeholder="Preferred Name" required>
+      </div>
+      <div class="input-group">
+  <i class="fas fa-envelope"></i>
+  <input type="email" name="email" id="email" placeholder="Enter your email" required>
+</div>
+      <div class="input-group">
+        <i class="fas fa-id-card"></i>
+        <input type="text" name="firstName" placeholder="First Name" required>
+      </div>
+      <div class="input-group">
+        <i class="fas fa-id-card"></i>
+        <input type="text" name="lastName" placeholder="Last Name" required>
+      </div>
+      <div class="input-group">
+        <i class="fas fa-calendar-alt"></i>
+        <input type="number" name="age" placeholder="Age" required>
+      </div>
+      <div class="input-group">
+        <i class="fas fa-venus-mars"></i>
+        <select name="gender" required>
+          <option value="" disabled selected>Gender</option>
+          <option value="Male">Male</option>
+          <option value="Female">Female</option>
+          <option value="Other">Other</option>
+        </select>
+      </div>
+      <div class="input-group">
+        <i class="fas fa-map-marker-alt"></i>
+        <textarea name="address" placeholder="Address"></textarea>
+      </div>
+       <div class="input-group mobile-number-container">
+    <i class="fas fa-phone"></i>
+    <input type="tel" name="mobile" placeholder="Mobile Number" required>
+  </div>
+      <div class="input-group">
+        <i class="fas fa-lock"></i>
+        <input type="password" name="password" placeholder="Password" required>
+      </div>
+      <div class="input-group">
+        <i class="fas fa-lock"></i>
+        <input type="password" name="confirmPassword" placeholder="Confirm Password" required>
+      </div>
+      <div class="form-actions">
+        <button type="submit" class="btn save-btn">Save</button>
+        <button type="button" class="btn cancel-btn">Cancel</button>
+      </div>
+    </form>
+  </div>
+
+  <script src="Profile.js"></script>
+</body>
+</html>

@@ -1,0 +1,105 @@
+package com.cmpe281.finalproject.smart_robot_backend.dto;
+import java.time.LocalDateTime;
+
+public class RobotDto {
+
+    private Long id;
+    private Long userId;  // To associate the robot with a user
+    private String simulatorType;
+    private String simulatorName;
+    private String name;
+    private String type;
+    private String operationalStatus;
+    private int batteryLevel;
+    private LocalDateTime startTime;
+    private LocalDateTime endTime;
+    private String startDestination;
+    private String endDestination;
+    private String requestedBy; 
+    // ... other fields as needed (location, sensors, etc.)
+
+    // Constructors
+
+    public RobotDto() {
+        // Default constructor
+    }
+
+    public RobotDto(Long id, Long userId, String simulatorType, String simulatorName, String name, 
+                   String type, String operationalStatus, int batteryLevel) {
+        this.id = id;
+        this.userId = userId;
+        this.simulatorType = simulatorType;
+        this.simulatorName = simulatorName;
+        this.name = name;
+        this.type = type;
+        this.operationalStatus = operationalStatus;
+        this.batteryLevel = batteryLevel;
+    }
+
+    // Getters and Setters
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public Long getUserId() {
+        return userId;
+    }
+
+    public void setUserId(Long userId) {
+        this.userId = userId;
+    }
+
+    public String getSimulatorType() {
+        return simulatorType;
+    }
+
+    public void setSimulatorType(String simulatorType) {
+        this.simulatorType = simulatorType;
+    }
+
+    public String getSimulatorName() {
+        return simulatorName;
+    }
+
+    public void setSimulatorName(String simulatorName) {
+        this.simulatorName = simulatorName;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
+
+    public String getOperationalStatus() {
+        return operationalStatus;
+    }
+
+    public void setOperationalStatus(String operationalStatus) {
+        this.operationalStatus = operationalStatus;
+    }
+
+    public int getBatteryLevel() {
+        return batteryLevel;
+    }
+
+    public void setBatteryLevel(int batteryLevel) {
+        this.batteryLevel = batteryLevel;
+    }
+
+}

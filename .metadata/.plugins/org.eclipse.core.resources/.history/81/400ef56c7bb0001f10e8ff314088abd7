@@ -1,0 +1,11 @@
+package com.cmpe281.finalproject.smart_robot_backend.controllers;
+
+public class AlertDto {
+    private String alertName;
+    private String severity;
+    private String location; 
+    private String status; // e.g., "Open", "Closed", "Acknowledged"
+
+    // Constructor, Getters, and Setters
+    // ...
+}

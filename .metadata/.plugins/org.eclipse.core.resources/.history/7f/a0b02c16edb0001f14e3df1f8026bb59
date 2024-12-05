@@ -1,0 +1,82 @@
+package com.cmpe281.finalproject.smart_robot_backend.services;
+
+import com.cmpe281.finalproject.smart_robot_backend.dto.CredentialsDto;
+import com.cmpe281.finalproject.smart_robot_backend.dto.ProfileDto;
+import com.cmpe281.finalproject.smart_robot_backend.dto.UserDto;
+import com.cmpe281.finalproject.smart_robot_backend.entities.User;
+import com.cmpe281.finalproject.smart_robot_backend.exceptions.UserNotFoundException;
+import com.cmpe281.finalproject.smart_robot_backend.repositories.UserRepository;
+
+import java.nio.CharBuffer;
+import java.time.LocalDateTime;
+import java.util.Optional;
+import java.util.stream.Collectors;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.stereotype.Service;
+
+@Service
+public class UserService {
+	@Autowired
+    private UserRepository userRepository;
+
+    @Autowired
+    private PasswordEncoder passwordEncoder;
+
+    public UserService(UserRepository userRepository, PasswordEncoder passwordEncoder) {
+        this.userRepository = userRepository;
+        this.passwordEncoder = passwordEncoder;
+    }
+    
+    public ProfileDto getProfile(Long userId) {
+        User user = getUser(userId);
+        return new ProfileDto(new UserSummaryDto(user.getId(), user.getFirstName(), user.getLastName()));
+    }
+    
+        public List<UserSummaryDto> searchUsers(String term) {
+            List<User> users = userRepository.search("%" + term + "%");
+            List<UserSummaryDto> usersToBeReturned = new ArrayList<>();
+
+            users.forEach(user ->
+                    usersToBeReturned.add(new UserSummaryDto(user.getId(), user.getFirstName(), user.getLastName()))
+            );
+
+            return usersToBeReturned;
+        }
+
+        public UserDto signUp(SignUpDto userDto) {
+            Optional<User> optionalUser = userRepository.findByLogin(userDto.getLogin());
+
+            if (optionalUser.isPresent()) {
+                throw new RuntimeException("Login already exists");
+            }
+
+            User user = new User(null,
+                    userDto.getFirstName(),
+                    userDto.getLastName(),
+                    userDto.getLogin(),
+                    passwordEncoder.encode(CharBuffer.wrap(userDto.getPassword())),
+                    null,
+                    null,
+                    LocalDateTime.now()
+                    );
+
+            User savedUser = userRepository.save(user);
+
+            return new UserDto(savedUser.getId(), null, null, null, null);
+            savedUser.getFirstName(),
+            savedUser.getLastName(),
+            savedUser.getLogin());
+        }
+
+        private User getUser(Long id) {
+            return userRepository.findById(id)
+                    .orElseThrow(() -> new RuntimeException("User not found"));
+        }
+    }
+
+      

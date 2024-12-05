@@ -1,0 +1,31 @@
+package com.cmpe281.finalproject.smart_robot_backend.controllers;
+
+import com.cmpe281.finalproject.smart_robot_backend.dto.AlertDto;
+import com.cmpe281.finalproject.smart_robot_backend.entities.Alert;
+import com.cmpe281.finalproject.smart_robot_backend.services.AlertService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;   
+
+
+@RestController
+@RequestMapping("/v1/alerts")
+public class AlertController {
+
+    @Autowired
+    private AlertService alertService;
+
+    @PostMapping("/{robotId}")   
+
+    public ResponseEntity<Alert> createAlert(
+            @PathVariable Long robotId,
+            @RequestBody AlertDto alertDto) {
+
+        Alert createdAlert = alertService.createAlert(robotId, alertDto);
+        return new ResponseEntity<>(createdAlert, HttpStatus.CREATED);
+    }
+
+    // Add other controller methods for managing alerts as needed
+    // (e.g., getAlertById, updateAlert, deleteAlert, etc.)
+}

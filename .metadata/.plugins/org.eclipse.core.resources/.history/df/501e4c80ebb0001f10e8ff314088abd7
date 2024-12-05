@@ -1,0 +1,69 @@
+package com.cmpe281.finalproject.smart_robot_backend.controllers;
+
+import org.springframework.web.bind.annotation.RestController;
+import com.cmpe281.finalproject.smart_robot_backend.dto.UserDto;
+import com.cmpe281.finalproject.smart_robot_backend.entities.User;
+import com.cmpe281.finalproject.smart_robot_backend.services.UserService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
+
+
+import java.util.List;
+
+	@RestController
+	@RequestMapping("/v1/users")
+	public class UserController {
+
+	    @Autowired
+	    private UserService userService;
+
+	    @PostMapping("/signup")
+	    public ResponseEntity<User> signup(@RequestBody
+	 UserDto userDto) {
+	        User createdUser = userService.signup(userDto); 
+
+	        return new ResponseEntity<>(createdUser, HttpStatus.CREATED);
+	    }
+
+	    @PostMapping("/login")
+	    public ResponseEntity<User> login( String username, @RequestParam String password) {
+	        User loggedInUser = userService.login(username, password);
+	        return ResponseEntity.ok(loggedInUser);
+
+	    }
+
+	    @PostMapping("/forgot-password")
+	    public ResponseEntity<Void> forgotPassword(@RequestParam String username) {
+	        userService.forgotPassword(username);
+	        return ResponseEntity.noContent().build();
+	    }
+
+	    @PostMapping("/reset-password")
+	    public ResponseEntity<Void> resetPassword(@RequestParam String token, @RequestParam String newPassword) {
+	        userService.resetPassword(token, newPassword);
+	        return ResponseEntity.noContent().build();
+	    }
+
+	    @PutMapping("/{userId}/role")
+	    public ResponseEntity<Void> assignRole(@PathVariable Long userId, @RequestParam String role) {
+	        userService.assignRole(userId, role);
+	        return ResponseEntity.noContent().build();
+	    }
+
+	    @GetMapping
+	    public ResponseEntity<List<User>> listUsers(@RequestParam(defaultValue = "0") int page) {
+	        List<User> users = userService.listUsers(page);
+	        return ResponseEntity.ok(users);
+	    }
+
+	    @DeleteMapping("/{userId}")
+	    public ResponseEntity<Void> deleteUser(@PathVariable Long userId) {
+	        userService.deleteUser(userId);
+
+	        return ResponseEntity.noContent().build();
+	    }
+
+	    // Add more controller methods for other user management operations
+	}

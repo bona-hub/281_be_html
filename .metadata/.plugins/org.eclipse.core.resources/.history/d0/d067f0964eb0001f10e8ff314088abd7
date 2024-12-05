@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Registration Form</title>
+  <link rel="stylesheet" href="signup.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+  <div class="background">
+    <div class="signup-container">
+      <h2>Registration Form</h2>
+      <form id="registrationForm">
+        <!-- Username -->
+        <div class="input-group">
+          <i class="fas fa-user icon"></i>
+          <input type="text" id="username" placeholder="Enter your username" required>
+        </div>
+
+        <!-- Email Address -->
+        <div class="input-group">
+          <i class="fas fa-envelope icon"></i>
+          <input type="email" id="email" placeholder="Enter your email" required>
+        </div>
+
+        <!-- Password -->
+        <div class="input-group">
+          <i class="fas fa-lock icon"></i>
+          <input type="password" id="password" placeholder="Enter your password" required>
+        </div>
+
+        <!-- Confirm Password -->
+        <div class="input-group">
+          <i class="fas fa-check-circle icon"></i>
+          <input type="password" id="confirmPassword" placeholder="Re-enter your password" required>
+        </div>
+
+        <!-- Role Selection -->
+        <div class="input-group">
+          <i class="fas fa-users icon"></i>
+          <select id="role" required>
+            <option value="" disabled selected>Select your role</option>
+            <option value="robotOwner">Robot Owner</option>
+            <option value="cloudServiceStaff">Cloud Service Staff</option>
+          </select>
+        </div>
+
+        <!-- Submit Button -->
+        <button type="submit" class="signup-button">Register</button>
+      </form>
+      <p class="signin-text">Already a member? <a href="login.html">Sign in</a></p>
+    </div>
+  </div>
+  <script src="signup.js"></script>
+</body>
+</html>

@@ -1,0 +1,38 @@
+package com.cloud281_project;
+
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
+
+
+@SpringBootApplication
+public class SmartRobotSpringBootApplication {
+
+	public static void main(String[] args) {
+		SpringApplication.run(SmartRobotSpringBootApplication.class, args);
+	}
+//		@Controller
+//		public class WebController {
+//	    @GetMapping("/")
+//	    public String home() {
+//	        return "welcome"; // Maps to welcome.html in the templates folder
+//	    }
+//
+//	    @GetMapping("/features")
+//	    public String features() {
+//	        // Add other mappings if you have separate pages
+//	        return "features";
+//	    }
+//
+//	    @GetMapping("/login")
+//	    public String login() {
+//	        return "login"; // Maps to login.html
+//	    }
+//
+//	    @GetMapping("/signup")
+//	    public String signup() {
+//	        return "signup"; // Maps to signup.html
+//	    }
+//}
+}

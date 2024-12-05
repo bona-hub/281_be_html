@@ -1,0 +1,10 @@
+package com.cmpe281.finalproject.smart_robot_backend.dto;
+import java.time.LocalDateTime;
+
+public class PatrolScheduleDto {
+    private LocalDateTime startTime;
+    private LocalDateTime endTime;
+    private String startDestination;
+    private String endDestination;
+
+}

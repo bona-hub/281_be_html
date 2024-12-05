@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www/thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login</title>
+  <link rel="stylesheet" href="/login.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+  <div class="background">
+    <div class="login-container">
+      <div class="avatar">
+        <i class="fas fa-user-circle"></i>
+      </div>
+      <h2>Sign In</h2>
+      <form id="loginForm">
+        <!-- Username -->
+        <div class="input-group">
+          <i class="fas fa-user icon"></i>
+          <input type="text" id="username" placeholder="Username" required>
+          <small class="error-message" id="usernameError"></small>
+        </div>
+        <!-- Password -->
+        <div class="input-group">
+          <i class="fas fa-lock icon"></i>
+          <input type="password" id="password" placeholder="Password" required>
+          <small class="error-message" id="passwordError"></small>
+        </div>
+        <!-- Login Button -->
+        <button type="submit" class="login-button">Login</button>
+        <!-- Additional Options -->
+        <div class="options">
+          <div>
+            <input type="checkbox" id="rememberMe">
+            <label for="rememberMe">Remember me</label>
+          </div>
+          <a href="forgot_password.html">Forgot Password?</a>
+        </div>
+      </form>
+      <p class="register-text">
+        Don't have an account? <a href="signup.html">Register here</a>
+      </p>
+    </div>
+  </div>
+  <script src="/login.js"></script>
+</body>
+</html>

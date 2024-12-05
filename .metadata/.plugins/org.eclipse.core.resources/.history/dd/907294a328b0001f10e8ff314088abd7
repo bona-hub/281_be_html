@@ -1,0 +1,61 @@
+package com.cloud281_project;
+import javax.mail.*;
+import javax.mail.Session;
+import javax.mail.Message;
+import javax.mail.internet.MimeMessage;
+import javax.mail.internet.InternetAddress;
+import javax.mail.Transport;
+import javax.mail.MessagingException;
+
+import javax.mail.internet.*;
+import java.util.*;
+
+public class NotificationService {
+
+    // SMTP server details
+    private static final String SMTP_HOST = "smtp.mailtrap.io";  // Example SMTP host (use your own)
+    private static final String SMTP_PORT = "587";
+    private static final String USERNAME = "your_username";
+    private static final String PASSWORD = "your_password";
+
+    public static void sendEmailNotification(String subject, String messageBody, String recipient) {
+        // Set up properties for SMTP server
+        Properties properties = new Properties();
+        properties.put("mail.smtp.host", SMTP_HOST);
+        properties.put("mail.smtp.port", SMTP_PORT);
+        properties.put("mail.smtp.auth", "true");
+        properties.put("mail.smtp.starttls.enable", "true");
+
+        // Authenticate with SMTP server
+        Session session = Session.getInstance(properties, new Authenticator() {
+            protected PasswordAuthentication getPasswordAuthentication() {
+                return new PasswordAuthentication(USERNAME, PASSWORD);
+            }
+        });
+
+        try {
+            // Compose the message
+            Message message = new MimeMessage(session);
+            message.setFrom(new InternetAddress("noreply@smartsecurity.com"));
+            message.setRecipients(Message.RecipientType.TO, InternetAddress.parse(recipient));
+            message.setSubject(subject);
+            message.setText(messageBody);
+
+            // Send the email
+            Transport.send(message);
+            System.out.println("Alert email sent successfully!");
+        } catch (MessagingException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    // Simulate triggering an alert
+    public static void main(String[] args) {
+        String alertType = "Low Battery";
+        String recipient = "admin@smartsecurity.com";
+        String message = "Warning: Robot #101 has low battery. Please charge it immediately.";
+
+        // Send email notification
+        sendEmailNotification(alertType, message, recipient);
+    }
+}

@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Alerts & Notifications</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+  <link rel="stylesheet" href="/AlertsAndNotifications.css">
+</head>
+<body>
+  <header class="header">
+    <h1>Alerts & Notifications</h1>
+  </header>
+
+  <main>
+    <section class="current-alerts">
+      <h2>Current Alerts</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>Alert ID</th>
+            <th>Robot ID</th>
+            <th>Alert Name</th>
+            <th>Severity</th>
+            <th>Timestamp</th>
+            <th>Location</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody id="currentAlerts">
+          <tr class="critical">
+            <td>#A001</td>
+            <td>#R001</td>
+            <td>Suspicious Activity Detected</td>
+            <td>Critical</td>
+            <td>2024-11-23 10:15 AM</td>
+            <td>37.3382, -121.8863</td>
+            <td>
+              <button class="acknowledge-button">Acknowledge</button>
+              <button class="resolve-button">Resolve</button>
+            </td>
+          </tr>
+          <tr class="high">
+            <td>#A002</td>
+            <td>#R002</td>
+            <td>Low Battery</td>
+            <td>High</td>
+            <td>2024-11-23 9:45 AM</td>
+            <td>37.3348, -121.8842</td>
+            <td>
+              <button class="acknowledge-button">Acknowledge</button>
+              <button class="resolve-button">Resolve</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section class="alert-history">
+      <h2>Alert History</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>Alert ID</th>
+            <th>Robot ID</th>
+            <th>Alert Name</th>
+            <th>Severity</th>
+            <th>Timestamp</th>
+            <th>Location</th>
+            <th>Status</th>
+          </tr>
+        </thead>
+        <tbody id="alertHistory">
+          <tr>
+            <td>#A003</td>
+            <td>#R003</td>
+            <td>Robot Malfunction</td>
+            <td>Medium</td>
+            <td>2024-11-22 4:30 PM</td>
+            <td>37.3352, -121.8811</td>
+            <td>Resolved</td>
+          </tr>
+          <tr>
+            <td>#A004</td>
+            <td>#R001</td>
+            <td>Patrol Interrupted</td>
+            <td>Low</td>
+            <td>2024-11-21 2:00 PM</td>
+            <td>37.3372, -121.8798</td>
+            <td>Resolved</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+  </main>
+
+  <script src="/AlertsAndNotifications.js"></script>
+</body>
+</html>

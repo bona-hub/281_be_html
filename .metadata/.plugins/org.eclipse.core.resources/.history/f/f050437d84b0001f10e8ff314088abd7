@@ -1,0 +1,30 @@
+package com.cmpe281.finalproject.smart_robot_backend.services;
+
+import com.cmpe281.finalproject.smart_robot_backend.dto.AlertDto;
+import com.cmpe281.finalproject.smart_robot_backend.entities.Alert;
+import com.cmpe281.finalproject.smart_robot_backend.repositories.AlertRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import java.time.LocalDateTime;
+
+@Service
+public class AlertService {
+
+	@Autowired
+    private AlertRepository alertRepository;
+
+	public Alert createAlert(Long robotId, AlertDto alertDto) {
+        Alert alert = new Alert();
+        alert.setRobotId(robotId);
+        alert.setAlertName(alertDto.getAlertName());
+        alert.setSeverity(alertDto.getSeverity());
+        alert.setTimestamp(LocalDateTime.now());
+        alert.setLocation(alertDto.getLocation());
+        alert.setStatus(alertDto.getStatus());
+
+        return alertRepository.save(alert); // Save alert to the database
+    }
+
+    // Add other methods for managing alerts as needed (e.g., getAlertById, updateAlert, etc.)
+}

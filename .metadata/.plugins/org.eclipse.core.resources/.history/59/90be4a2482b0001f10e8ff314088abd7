@@ -1,0 +1,77 @@
+package com.cmpe281.finalproject.smart_robot_backend.controllers;
+
+import java.util.List;
+
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
+
+import com.cmpe281.finalproject.smart_robot_backend.dto.AlertDto;
+import com.cmpe281.finalproject.smart_robot_backend.dto.PatrolScheduleDto;
+import com.cmpe281.finalproject.smart_robot_backend.dto.RobotCreationRequestDto;
+import com.cmpe281.finalproject.smart_robot_backend.entities.Robot; // Import Robot entity
+import com.cmpe281.finalproject.smart_robot_backend.services.RobotService;
+
+import jakarta.validation.Valid;
+
+@RestController
+@RequestMapping("/v1/robots") 
+public class RobotController {
+
+    private final RobotService robotService;
+
+    public RobotController(RobotService robotService) {
+        this.robotService = robotService; 
+    }
+
+    @PostMapping // new robot 
+    public ResponseEntity<Robot> createRobot( // Changed return type to Robot
+            @RequestParam Long userId, 
+            @RequestParam(value = "simulatorType") String simulatorType,
+            @RequestParam(value = "simulatorName") String simulatorName,
+            @RequestBody @Valid RobotCreationRequestDto robotCreationRequest) { 
+    	
+        // 1. Validate simulator type against allowed values
+        List<String> allowedSimulatorTypes = robotService.getAllowedSimulatorTypes();
+        if (!allowedSimulatorTypes.contains(simulatorType)) {
+            return ResponseEntity.badRequest().body(null); 
+        }
+                
+        // 2. Validate robot type against allowed values
+        List<String> allowedRobotTypes = robotService.getAllowedRobotTypes();
+        if (!allowedRobotTypes.contains(robotCreationRequest.getType())) {
+            return ResponseEntity.badRequest().body(null); 
+        }
+
+        // 3. Validate operational status against allowed values
+        List<String> allowedOperationalStatuses = robotService.getAllowedOperationalStatuses();
+        if (!allowedOperationalStatuses.contains(robotCreationRequest.getOperationalStatus())) {
+            return ResponseEntity.badRequest().body(null);
+        }
+        
+        // 4. Create and populate Robot entity 
+        Robot robot = new Robot();
+        robot.setUserId(userId);
+        robot.setSimulatorType(simulatorType);
+        robot.setSimulatorName(simulatorName);
+        robot.setName(robotCreationRequest.getName());
+        robot.setType(robotCreationRequest.getType());
+        robot.setOperationalStatus(robotCreationRequest.getOperationalStatus());
+        robot.setBatteryLevel(robotCreationRequest.getBatteryLevel());
+        
+
+        // 5. Call the service to create the robot
+        Robot createdRobot = robotService.createRobot(robot); // Pass Robot entity to service
+
+        return new ResponseEntity<>(createdRobot, HttpStatus.CREATED); 
+    }
+    
+    // ... other controller methods ...
+}

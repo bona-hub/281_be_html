@@ -1,0 +1,99 @@
+package com.cmpe281.finalproject.smart_robot_backend.services;
+
+import com.cmpe281.finalproject.smart_robot_backend.dto.UserDto;
+import com.cmpe281.finalproject.smart_robot_backend.entities.User;
+import com.cmpe281.finalproject.smart_robot_backend.exceptions.UserNotFoundException;
+import com.cmpe281.finalproject.smart_robot_backend.repositories.UserRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.stereotype.Service;
+
+@Service
+public class UserService {
+	@Autowired
+    private UserRepository userRepository;
+
+    @Autowired
+    private PasswordEncoder passwordEncoder;
+
+
+       // Sign up
+ 
+    public User signup(UserDto userDto) {
+        User user = new User();
+        user.setUsername(userDto.getUsername());
+        user.setPassword(passwordEncoder.encode(userDto.getPassword()));
+        
+        // Set   
+        return userRepository.save(user);
+    }
+
+    // Login (you'll typically use Spring Security for authentication)
+    public User login(String username, String password) {
+        User user = userRepository.findByUsername(username);
+        if (user != null && passwordEncoder.matches(password, user.getPassword())) {
+            return user;
+        } else 
+ {
+            // Throw an exception or return null for invalid credentials
+            throw new UserNotFoundException("Invalid username or password"); 
+        }
+    }
+
+    // Forgot password (initiate password reset)
+    public void forgotPassword(String username) {
+        User user = userRepository.findByUsername(username);
+        if (user == null) {
+            throw new UserNotFoundException("User not found"); 
+
+        }
+        // Generate and send a password reset token (e.g., via email)
+        // ...
+    }
+
+    // Reset password
+    public void resetPassword(String token, String newPassword) {
+        // Verify the token and retrieve the user
+        // ...
+        User user = userRepository.findByUsername("..."); // Replace with logic to find user by token
+        user.setPassword(passwordEncoder.encode(newPassword));
+        userRepository.save(user);
+    }
+
+    // Role assignment
+    public void assignRole(Long userId, String role) {
+        User user = userRepository.findById(userId).orElseThrow(() -> new UserNotFoundException());
+        user.setRole(role); // Or use a Role entity if you have one
+        userRepository.save(user);
+    }
+
+    // Access control (you'll typically use Spring Security for this)
+    public boolean hasAccess(Long userId, String permission) {
+        User user = userRepository.findById(userId)
+                .orElseThrow(() -> new UserNotFoundException("User not found"));
+        // Check if the user's role has the required permission
+        // ...
+        return false; // Or true if the user has access
+    }
+
+    // List users
+    public List<User> listUsers(int page) {
+        Pageable pageable = PageRequest.of(page, 10); // 10 users per page
+        Page<User> userPage = userRepository.findAll(pageable);
+        return userPage.getContent();
+    }
+
+    // User deletion
+    public void deleteUser(Long userId) {
+        if (!userRepository.existsById(userId)) {
+            throw new UserNotFoundException("User not found");
+        }
+        userRepository.deleteById(userId);
+    }
+
+    // Add other user management methods as needed
+}
+

@@ -1,0 +1,5 @@
+package com.cmpe281.finalproject.smart_robot_backend.services;
+
+public class AlertService {
+
+}

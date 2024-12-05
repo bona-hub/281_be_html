@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<section name="Workbench">
+	<section name="MavenProjectWizardLocationPage">
+		<list key="location">
+			<item value="/Users/bonesgiri/eclipse-workspace/Smart_Security_Patrol_Robot_Cloud_Platform/Smart_Security_Patrol_Robot_CLoud_Platform"/>
+			<item value="/Users/bonesgiri/Downloads/SmartRobot"/>
+			<item value="/Users/bonesgiri/eclipse-workspace/Smart_Security_Patrol_Robot_Cloud_Platform"/>
+		</list>
+		<list key="projectNameTemplate">
+			<item value="[artifactId]"/>
+			<item value="[artifactId]-TRUNK"/>
+			<item value="[artifactId]-[version]"/>
+			<item value="[groupId].[artifactId]"/>
+			<item value="[groupId].[artifactId]-[version]"/>
+			<item value="[name]"/>
+		</list>
+	</section>
+	<section name="MavenProjectWizardArchetypePage">
+		<item key="catalog" value="All Catalogs"/>
+		<list key="projectNameTemplate">
+			<item value="[artifactId]"/>
+			<item value="[artifactId]-TRUNK"/>
+			<item value="[artifactId]-[version]"/>
+			<item value="[groupId].[artifactId]"/>
+			<item value="[groupId].[artifactId]-[version]"/>
+			<item value="[name]"/>
+		</list>
+	</section>
+	<section name="Maven2ProjectWizardArchifactPage">
+		<list key="package">
+		</list>
+		<list key="groupId">
+		</list>
+		<list key="artifactId">
+		</list>
+		<list key="projectNameTemplate">
+			<item value="[artifactId]"/>
+			<item value="[artifactId]-TRUNK"/>
+			<item value="[artifactId]-[version]"/>
+			<item value="[groupId].[artifactId]"/>
+			<item value="[groupId].[artifactId]-[version]"/>
+			<item value="[name]"/>
+		</list>
+		<list key="version">
+			<item value="0.0.1-SNAPSHOT"/>
+		</list>
+	</section>
+	<section name="MavenProjectWizardArtifactPage">
+		<list key="groupId">
+			<item value="com.could281-project"/>
+			<item value="com.cloud281-project"/>
+		</list>
+		<list key="name">
+		</list>
+		<list key="artifactId">
+			<item value="smart-robot"/>
+			<item value="smar-robot"/>
+		</list>
+		<list key="projectNameTemplate">
+			<item value="[artifactId]"/>
+			<item value="[artifactId]-TRUNK"/>
+			<item value="[artifactId]-[version]"/>
+			<item value="[groupId].[artifactId]"/>
+			<item value="[groupId].[artifactId]-[version]"/>
+			<item value="[name]"/>
+		</list>
+		<list key="version">
+			<item value="0.0.1-SNAPSHOT"/>
+		</list>
+	</section>
+	<section name="org.eclipse.m2e.core.ui.internal.wizards.CustomArchetypeDialog">
+		<list key="archetypeGroupId">
+			<item value="com.example"/>
+			<item value="org.springframework.boot"/>
+		</list>
+		<list key="archetypeArtifactId">
+			<item value="robot-cloud-backend"/>
+			<item value="spring-boot-archetype-web"/>
+			<item value="spring-boot-starter-parent"/>
+		</list>
+		<list key="archetypeVersion">
+			<item value="1.0-SNAPSHOT"/>
+			<item value="2.7.10"/>
+			<item value="3.1.0"/>
+		</list>
+		<list key="repositoryUrl">
+			<item value=""/>
+			<item value="https://repo1.maven.org/maven2"/>
+		</list>
+	</section>
+	<section name="org.eclipse.m2e.core.pom.overview">
+	</section>
+	<section name="org.eclipse.m2e.core.pom.dependencies">
+	</section>
+</section>

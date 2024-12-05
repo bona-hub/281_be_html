@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<launchConfiguration type="org.eclipse.m2e.Maven2LaunchConfigurationType">
+    <booleanAttribute key="M2_BATCH" value="false"/>
+    <stringAttribute key="M2_GOALS" value="-U archetype:generate"/>
+    <listAttribute key="M2_PROPERTIES">
+        <listEntry value="archetypeGroupId=am.ik.archetype"/>
+        <listEntry value="archetypeArtifactId=maven-reactjs-blank-archetype"/>
+        <listEntry value="archetypeVersion=1.0.0"/>
+        <listEntry value="groupId=com.example"/>
+        <listEntry value="artifactId=robot-cloud-backend "/>
+        <listEntry value="version=1.0-SNAPSHOT"/>
+        <listEntry value="package=com.example.robot_cloud_backend"/>
+        <listEntry value="outputDirectory=/Users/bonesgiri/eclipse-workspace/Smart_Security_Patrol_Robot_Cloud_Platform"/>
+    </listAttribute>
+    <booleanAttribute key="M2_SAVE_BEFORE_LAUNCH" value="false"/>
+    <booleanAttribute key="org.eclipse.debug.ui.private" value="true"/>
+    <stringAttribute key="org.eclipse.jdt.launching.WORKING_DIRECTORY" value="/var/folders/r3/lcqjjcls3c7d4kg6j1035bfr0000gn/T/m2e-archetypeGenerator6971933745366374999"/>
+</launchConfiguration>

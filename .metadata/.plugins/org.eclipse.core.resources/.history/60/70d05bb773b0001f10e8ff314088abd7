@@ -1,0 +1,11 @@
+package com.cmpe281.finalproject.smart_robot_backend.exceptions;
+
+
+public class RobotNotFoundException extends RuntimeException {
+
+    private static final long serialVersionUID = 1L; // Add this line
+
+    public RobotNotFoundException(String message) {
+        super(message);
+    }
+}

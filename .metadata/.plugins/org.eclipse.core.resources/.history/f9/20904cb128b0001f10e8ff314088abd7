@@ -1,0 +1,90 @@
+package com.cloud281_project;
+
+import com.example.usermanagement.model.User;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Optional;
+
+@RestController
+@RequestMapping("/api/users")
+public class UserController {
+
+    private final List<User> users = new ArrayList<>();
+
+    // Initialize with mock data
+    public UserController() {
+        users.add(new User(1, "admin", "admin@example.com", "Admin"));
+        users.add(new User(2, "john_doe", "john@example.com", "Robot Owner"));
+        users.add(new User(3, "jane_doe", "jane@example.com", "Robot Owner"));
+    }
+
+    // Get all users
+    @GetMapping
+    public List<User> getAllUsers() {
+        return users;
+    }
+
+    // Get a user by ID
+    @GetMapping("/{id}")
+    public User getUserById(@PathVariable int id) {
+        return users.stream()
+                .filter(user -> user.getId() == id)
+                .findFirst()
+                .orElse(null);
+    }
+
+    // Delete a user
+    @DeleteMapping("/{id}")
+    public String deleteUser(@PathVariable int id) {
+        Optional<User> userToRemove = users.stream()
+                .filter(user -> user.getId() == id)
+                .findFirst();
+
+        if (userToRemove.isPresent()) {
+            users.remove(userToRemove.get());
+            return "User ID " + id + " and associated robots deleted.";
+        } else {
+            return "User not found.";
+        }
+    }
+
+    // Assign role to a user
+    @PostMapping("/{id}/assign-role")
+    public String assignRole(@PathVariable int id, @RequestParam String role) {
+        Optional<User> userToUpdate = users.stream()
+                .filter(user -> user.getId() == id)
+                .findFirst();
+
+        if (userToUpdate.isPresent()) {
+            User user = userToUpdate.get();
+            if (!user.getRole().equals("Admin")) {
+                user.setRole(role);
+                return "Role assigned to User ID " + id;
+            } else {
+                return "Cannot reassign role to Admin.";
+            }
+        } else {
+            return "User not found.";
+        }
+    }
+
+    // Edit a user
+    @PutMapping("/{id}")
+    public String editUser(@PathVariable int id, @RequestBody User updatedUser) {
+        Optional<User> userToUpdate = users.stream()
+                .filter(user -> user.getId() == id)
+                .findFirst();
+
+        if (userToUpdate.isPresent()) {
+            User user = userToUpdate.get();
+            user.setUsername(updatedUser.getUsername());
+            user.setEmail(updatedUser.getEmail());
+            user.setRole(updatedUser.getRole());
+            return "User ID " + id + " updated.";
+        } else {
+            return "User not found.";
+        }
+    }
+}

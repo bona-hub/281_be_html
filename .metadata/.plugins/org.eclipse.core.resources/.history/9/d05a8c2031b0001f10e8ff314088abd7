@@ -1,0 +1,17 @@
+package com.cloud281_project;
+
+public class RobotManagementSptingApplication extends RobotControllerTest {
+
+	import org.springframework.boot.SpringApplication; // Import SpringApplication
+	import org.springframework.boot.autoconfigure.SpringBootApplication; // Import SpringBootApplication
+
+	// ... (Rest of your RobotController code) ... 
+
+	@SpringBootApplication 
+	public class RobotManagementSystemApplication { // This should be in a separate file named RobotManagementSystemApplication.java
+
+	    public static void main(String[] args) {
+	        SpringApplication.run(RobotManagementSystemApplication.class, args);
+	    }
+	}
+}

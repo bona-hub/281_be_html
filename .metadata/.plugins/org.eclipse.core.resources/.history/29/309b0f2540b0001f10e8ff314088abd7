@@ -1,0 +1,13 @@
+package com.cloud281_project;
+
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+
+@SpringBootApplication
+public class SmartRobot {
+
+	public static void main(String[] args) {
+		SpringApplication.run(SmartRobot.class, args);
+	}
+
+}

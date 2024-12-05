@@ -1,0 +1,56 @@
+package com.cmpe281.finalproject.smart_robot_backend.repositories;
+
+import com.cmpe281.finalproject.smart_robot_backend.entities.Robot;
+import org.springframework.context.annotation.Profile;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
+import org.springframework.data.domain.Pageable;
+import org.springframework.stereotype.Repository;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Optional;
+
+@Repository
+@Profile("test")
+public class DummyRobotRepository implements RobotRepository {
+
+    private final Map<Long, Robot> robots = new HashMap<>();
+    private Long nextId = 1L;
+
+    @Override
+    public Robot save(Robot robot) {
+        if (robot.getId() == null) {
+            robot.setId(nextId++);
+        }
+        robots.put(robot.getId(), robot);
+        return robot;
+    }
+
+    @Override
+    public Optional<Robot> findById(Long id) {
+        return Optional.ofNullable(robots.get(id));
+    }
+
+    @Override
+    public boolean existsById(Long id) {
+        return robots.containsKey(id);
+    }
+
+    @Override
+    public void deleteById(Long id) {
+        robots.remove(id);
+    }
+
+    @Override
+    public Page<Robot> findAll(Pageable pageable) {
+        List<Robot> allRobots = new ArrayList<>(robots.values());
+        int start = (int) pageable.getOffset();
+        int end = Math.min((start + pageable.getPageSize()), allRobots.size());
+        return new PageImpl<>(allRobots.subList(start, end), pageable, allRobots.size());
+    }
+
+    // Add other methods as needed for your tests
+}

@@ -1,0 +1,12 @@
+package com.cloud281_project;
+
+public class Applicationclass {
+
+	@SpringBootApplication
+	public class MySpringBootApp {
+	    public static void main(String[] args) {
+	        SpringApplication.run(MySpringBootApp.class, args);
+	    }
+	}
+
+}
